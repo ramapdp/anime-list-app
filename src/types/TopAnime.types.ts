@@ -1,4 +1,4 @@
-interface dataAnime {
+export type Data = {
   mal_id: number;
   url: string;
   images: {
@@ -118,7 +118,7 @@ interface dataAnime {
   }[];
 }
 
-interface pagination {
+export type Pagination = {
   last_visible_page: number;
   has_next_page: boolean;
   current_page: number;
@@ -127,9 +127,4 @@ interface pagination {
     total: number;
     per_page: number;
   };
-}
-
-export interface ResponseTopAnime {
-  pagination: pagination;
-  data: dataAnime[];
 }

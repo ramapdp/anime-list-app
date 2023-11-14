@@ -1,5 +1,6 @@
 import { apiSlice } from "@/store/api/apiSlice";
-import { ResponseTopAnime } from "./topAnime.types";
+import { ResponseApi } from "@/types/ResponseApi.types";
+import { Data, Pagination } from "@/types/TopAnime.types";
 
 export const topAnimeApiSlice = apiSlice
   .enhanceEndpoints({
@@ -7,11 +8,15 @@ export const topAnimeApiSlice = apiSlice
   })
   .injectEndpoints({
     endpoints: (builder) => ({
-      getTopAnime: builder.query<ResponseTopAnime, void>({
+      getTopAnime: builder.query<ResponseApi<Data[], Pagination>, void>({
+        query: () => "top/anime?limit=4",
+        providesTags: ["topAnime"],
+      }),
+      getAllTopAnime: builder.query<ResponseApi<Data[], Pagination>, void>({
         query: () => "top/anime",
         providesTags: ["topAnime"],
       }),
     }),
   });
 
-export const { useGetTopAnimeQuery } = topAnimeApiSlice;
+export const { useGetTopAnimeQuery, useGetAllTopAnimeQuery } = topAnimeApiSlice;
