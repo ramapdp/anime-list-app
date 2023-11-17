@@ -26,6 +26,7 @@ export default function CardAnime({
           className="h-full w-full object-cover object-center"
           width={125}
           height={175}
+          priority
         />
       </div>
       <h3 className="mt-4 truncate text-sm font-semibold text-gray-700">

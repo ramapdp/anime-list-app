@@ -4,6 +4,12 @@ const nextConfig = {
       remotePatterns: [
          {
             hostname: 'cdn.myanimelist.net',
+         },
+         {
+            hostname: 'images.unsplash.com',
+         },
+         {
+            hostname: 'tailwindui.com',
          }
       ]
    }

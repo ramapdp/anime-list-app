@@ -22,7 +22,7 @@ export default function Home() {
     <main>
       <div className="bg-white">
         {/* List Top Anime */}
-        <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 lg:max-w-7xl lg:px-8">
+        <div className="mx-auto max-w-2xl px-4 py-8 sm:px-6 lg:max-w-7xl lg:px-8 lg:py-16">
           <SectionTitle
             title="Top Anime"
             link="/top-anime"
@@ -30,7 +30,7 @@ export default function Home() {
           />
           {!topAnime ? (
             <Spinner />
-          ) : (
+          ) : (     
             <div className="mt-6 grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 md:grid-cols-4 md:gap-y-4 lg:gap-x-8">
               {/* <Slider {...settings}> */}
               {topAnime?.data.map((anime) => (
@@ -51,9 +51,7 @@ export default function Home() {
 
         {/* List Recommendation Anime */}
         <div className="mx-auto max-w-2xl px-4 pb-16 sm:px-6 lg:max-w-7xl lg:px-8">
-          <SectionTitle
-            title="Recommendations For You"
-          />
+          <SectionTitle title="Recommendations For You" />
           {!recomAnime ? (
             <Spinner />
           ) : (
