@@ -1,7 +1,7 @@
 "use client";
 import CardAnime from "@/components/CardAnime";
 import SectionTitle from "@/components/SectionTitle";
-import Spinner from "@/components/Spinner";
+import Spinner from "@/app/loading";
 import { useGetRecommedationAnimeQuery } from "@/services/recomAnime/recomAnimeApiSlice";
 import { useGetTopAnimeQuery } from "@/services/topAnime/topAnimeApiSlice";
 import Slider from "react-slick";
@@ -29,8 +29,10 @@ export default function Home() {
             textLink="View all"
           />
           {!topAnime ? (
-            <Spinner />
-          ) : (     
+            <div className="py-6">
+              <Spinner />
+            </div>
+          ) : (
             <div className="mt-6 grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 md:grid-cols-4 md:gap-y-4 lg:gap-x-8">
               {/* <Slider {...settings}> */}
               {topAnime?.data.map((anime) => (
@@ -53,11 +55,13 @@ export default function Home() {
         <div className="mx-auto max-w-2xl px-4 pb-16 sm:px-6 lg:max-w-7xl lg:px-8">
           <SectionTitle title="Recommendations For You" />
           {!recomAnime ? (
-            <Spinner />
+            <div className="py-6">
+              <Spinner />
+            </div>
           ) : (
             <div className="mt-6 grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 md:grid-cols-4 md:gap-y-4 lg:gap-x-8">
               {/* <Slider {...settings}> */}
-              {recomAnime?.data.map((recom) => (
+              {/* {recomAnime?.data.map((recom) => (
                 <CardAnime
                   key={recom.entry[0].mal_id}
                   imgSrc={recom.entry[0].images.webp.image_url}
@@ -65,7 +69,8 @@ export default function Home() {
                   title={recom.entry[0].title}
                   link={recom.entry[0].url}
                 />
-              ))}
+              ))} */}
+              <h1>(Coming Soon)</h1>
               {/* </Slider> */}
             </div>
           )}

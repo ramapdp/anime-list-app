@@ -5,12 +5,21 @@ import { Bars3BottomRightIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import NavbarLogo from "./NavbarLogo";
 import SearchBar from "./SearchBar";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
 
+const navigation = [
+  { name: "Home", href: "/" },
+];
+
 export default function Index() {
+  const router = usePathname();
+  console.log(router);
+
   return (
     <Disclosure as="nav" className="bg-white shadow">
       {({ open }) => (
@@ -22,30 +31,19 @@ export default function Index() {
                 {/* Navigation Link */}
                 <div className="hidden lg:ml-6 lg:flex lg:space-x-8">
                   {/* Current: "border-red-400 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" */}
-                  <a
-                    href="/"
-                    className="inline-flex items-center border-b-2 border-red-400 px-1 pt-1 text-sm font-medium text-gray-900"
-                  >
-                    Home
-                  </a>
-                  {/* <a
-                    href="#"
-                    className="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
-                  >
-                    Team
-                  </a>
-                  <a
-                    href="#"
-                    className="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
-                  >
-                    Projects
-                  </a>
-                  <a
-                    href="#"
-                    className="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
-                  >
-                    Calendar
-                  </a> */}
+                  {navigation.map((item) => (
+                    <a
+                      key={item.name}
+                      href={item.href}
+                      className={`${
+                        router === item.href
+                          ? "border-red-400 text-gray-900"
+                          : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"
+                      } inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium`}
+                    >
+                      {item.name}
+                    </a>
+                  ))}
                 </div>
               </div>
               <div className="flex flex-1 items-center justify-center px-2 lg:ml-2 lg:justify-end">

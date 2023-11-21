@@ -1,11 +1,20 @@
 "use client";
 import { MagnifyingGlassIcon } from "@heroicons/react/20/solid";
+import { useRouter } from "next/navigation";
 import { useRef } from "react";
 
 export default function SearchBar() {
   const searchRef = useRef<HTMLInputElement>(null);
-  let keywords = searchRef.current?.value;
-  console.log("ini keywords: ", keywords);
+  const router = useRouter();
+
+  const handleSearch = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      const keywords = searchRef.current?.value;
+      if (!keywords) return;
+      router.push(`/search/${keywords}`);
+    }
+  };
 
   return (
     <div className="w-52 max-w-lg md:w-full lg:max-w-xs">
@@ -26,10 +35,7 @@ export default function SearchBar() {
           placeholder="Search Anime"
           type="search"
           ref={searchRef}
-          onChange={(e) => {
-            keywords = e.target.value;
-            console.log("ini keywords: ", keywords);
-          }}
+          onKeyDown={handleSearch}
         />
       </div>
     </div>
